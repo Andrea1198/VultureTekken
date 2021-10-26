@@ -1,0 +1,16 @@
+ALBI:
+immagini da fare:
+	SCHERMATA INIZIALE:
+	sfondo della schermata (puoi scegliere quallo che vuoi, magari una nostra foto modificata)
+	pulsanti start e exit ognuno con due modalità (come digitalbi ma qua sono 4 immagini diverse in cui in ognuna c'è solo un pulsante)
+	PERSONAGGI:
+	immagini dei personaggi con cornici (qua puoi decidere tu le cornici e le immagini da usare, se te ne servono di qualcuno noi vediamo se ne abbiamo
+	divertiti più che puoi con le immagini
+DAN:
+programmi:
+	ho iniziato a fare le schermzate iniziali, controlla e dimmi se possiamo migliorare qualcosa. per ora il programma fa la schermata di start/exit
+	e la scelta dei personaggi. possiamo fare scegliere la mappa, poi manca tutto il resto.
+	poi stavo pensando a come farli giocare. sarebbe figo riuscire a farlo online, con dei salvataggi, ecc. e poi non so come farli giocare sulla stessa tastiera. cioè non mi piace che usino dei tasti diversi i due giocatori.
+
+TUTTI:
+stavo pensando se farlo tipo 2D a piattaforme o proprio come tekken
