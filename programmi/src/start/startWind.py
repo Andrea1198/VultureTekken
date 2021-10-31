@@ -6,7 +6,7 @@ from src.start.functions import checkBT
 def start(WIDTH, HEIGHT):
     import pygame
     running = True
-    dir = "./images/start/"
+    dir         = "./images/start/"
     background  = "background.jpg"
     start       = ["start_selected.png", "start_not_selected.png"]
     exit        = ["quit_not_selected.png", "quit_selected.png"]

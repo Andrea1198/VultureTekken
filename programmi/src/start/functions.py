@@ -1,7 +1,9 @@
 import numpy as np
 import pygame
+from numba import jit
 
 # Function to create a grid given as input at least w, h, n_cols, n_rows
+@jit(nopython=True, fastmath=True)
 def create_grid(w, h, n_cols=1, n_rows=1, spacex=0, spacey=0, shiftx=0, shifty=0):
     x   = np.zeros(n_cols, np.int32)
     y   = np.zeros(n_rows, np.int32)
@@ -30,6 +32,7 @@ def drawgrid(X, Y, l, h, screen, images):
             screen.blit(char, (X[i], Y[j]))
 
 # Function to check if the parameter is between the interval
+@jit(nopython=True)
 def checkBT(x, x1, x2):
     temp1   = min(x1, x2)
     temp2   = x1 + x2 - temp1
