@@ -1,5 +1,6 @@
 import numpy as np
 import pygame
+from src.colors import *
 from numba import jit
 
 # Function to create a grid given as input at least w, h, n_cols, n_rows
@@ -16,7 +17,6 @@ def create_grid(w, h, n_cols=1, n_rows=1, spacex=0, spacey=0, shiftx=0, shifty=0
         y[j]    = shifty + j*(h/n_rows) + spacey/2
     for i in range(n_cols * n_rows):
         pos[i,0]  = x[i%n_cols]
-        print(y[i//n_cols])
         pos[i,1]  = y[i//n_cols]
     # print(x, y, pos)
     return (x, y, lx, ly, pos)
@@ -25,11 +25,14 @@ def create_grid(w, h, n_cols=1, n_rows=1, spacex=0, spacey=0, shiftx=0, shifty=0
 def drawgrid(X, Y, l, h, screen, images):
     import pygame
     n_cols  = X.size
+    surf    = pygame.Surface((l, h))
     for i in range(n_cols):
         for j in range(Y.size):
+            surf.fill(BLACK)
             char    = pygame.image.load(images[i + j*n_cols])
             char    = pygame.transform.scale(char, (l, h))
-            screen.blit(char, (X[i], Y[j]))
+            surf.blit(char, (0,0))
+            screen.blit(surf, (X[i], Y[j]))
 
 # Function to check if the parameter is between the interval
 @jit(nopython=True)

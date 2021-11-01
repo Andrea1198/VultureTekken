@@ -1,3 +1,5 @@
+from numpy import loadtxt
+import pygame
 # Classe dei personaggi. ognuno di essi ha diverse caratteristiche.
 # corpo_a_corpo : danni da vicino
 # distanza : danni per cose lanciate (minori del corpo a corpo)
@@ -8,14 +10,23 @@
 
 class char:
     def __init__(self, n, WIDTH, p):
-        from numpy import loadtxt
-        self.n      = n
-        self.corpo_a_corpo, self.distanza, self.vita_max, self.velocity, self.salto,  self.rigenerazione = loadtxt('./src/stat.txt', skiprows=n+2, max_rows=1, unpack=True)
-        self.vita   = self.vita_max
+        self.n          = n
+        dir             = './images/characters/'
+        chars           = ["Pi.jpeg", "Dan.jpeg", "Albi.jpeg", "Mt_Conta.jpeg", "Cinto.jpeg", "JD.jpeg", "Niscoreggia.jpeg", "Steve.jpeg"]
+        char_im         = [pygame.image.load(dir+chars[i]) for i in range(len(chars))]
+        image           = char_im[self.n]
+        w_image         = 100
+        self.h_image    = 100
+        self.image      = pygame.transform.scale(image, (w_image, self.h_image))
+
+        self.corpo_a_corpo, self.distanza, self.vitaMax, self.velocity, self.salto,  self.rigenerazione = loadtxt('./src/stat.txt', skiprows=n+2, max_rows=1, unpack=True)
+        self.vita       = self.vitaMax
+        self.superMax   = 100
+        self.super      = 0
         if p==0:
-            self.x      = WIDTH/6
+            self.x      = 10
         else:
-            self.x      = WIDTH*5/6
+            self.x      = WIDTH-10-w_image
         self.y      = 0.
         self.vy     = 0.
 
@@ -40,11 +51,6 @@ class char:
             self.y -= self.vy
             if self.y < 0:
                 self.y = 0.
-    def show(self, screen):
+    def show(self, screen, HEIGHT, base):
         import pygame
-        dir     = './images/characters/'
-        chars   = ["Pi.jpeg", "Dan.jpeg", "Albi.jpeg", "Mt_Conta.jpeg", "Cinto.jpeg", "JD.jpeg", "Niscoreggia.jpeg", "Steve.jpeg"]
-        char_im = [pygame.image.load(dir+chars[i]) for i in range(len(chars))]
-        image   = char_im[self.n]
-        image   = image.transform.scale(image, (w_image, h_image))
-        screen.blit(image, (self.x, self.y))
+        screen.blit(self.image, (self.x, HEIGHT - self.h_image - self.y - base))

@@ -12,7 +12,8 @@ def start(WIDTH, HEIGHT):
     exit        = ["quit_not_selected.png", "quit_selected.png"]
 
     i   = 0
-    screen  = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
+    # screen  = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
+    screen  = pygame.display.set_mode((WIDTH, HEIGHT))
     bkg = pygame.image.load(dir+background)
     bkg = pygame.transform.scale(bkg, (WIDTH, HEIGHT))
     bt1x= WIDTH//4

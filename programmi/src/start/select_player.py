@@ -8,7 +8,8 @@ def select_player(WIDTH, HEIGHT, step, p):
 
     # Defining arrangement of the grid and number of players variable
     dir = "./images/characters/"
-    screen      = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
+    # screen      = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
+    screen      = pygame.display.set_mode((WIDTH, HEIGHT))
     chars       = ["Pi.jpeg", "Dan.jpeg", "Albi.jpeg", "Mt_Conta.jpeg", "Cinto.jpeg", "JD.jpeg", "Niscoreggia.jpeg", "Steve.jpeg"]
     n_players   = len(chars)
     n_cols      = 4
@@ -55,6 +56,8 @@ def select_player(WIDTH, HEIGHT, step, p):
         dy      = (HEIGHT - HEIGHT//4) / n_rows
         ny      = y_mouse // dy
         nc      = int(nx + ny * n_cols)
+        if nc >= n_players:
+            nc -= n_cols
 
         # Player selection
         for event in pygame.event.get():
