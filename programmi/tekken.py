@@ -19,12 +19,12 @@ pygame.display.set_caption('Vulture Tekken')
 running = True
 step    = 0
 # schermata iniziale
-# start(WIDTH, HEIGHT)
+start(WIDTH, HEIGHT)
 # select_player dà in uscita un numero intero che indica quale personaggio ha preso
-# [n1, n2]  = select_player(WIDTH, HEIGHT, 0, 0)
+[n1, n2]  = select_player(WIDTH, HEIGHT, 0, 0)
 # Debugging variables
-n1          = 0
-n2          = 1
+# n1          = 0
+# n2          = 1
 # char è la classe dei personaggi che in entrata chiede un numero per identificare quale personaggio prendere
 p1          = char(n1, WIDTH, 0)
 p2          = char(n2, WIDTH, 1)

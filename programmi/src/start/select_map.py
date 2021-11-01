@@ -18,7 +18,6 @@ def select_map(WIDTH, HEIGHT):
     shiftx  = 0
     shifty  = 0
 
-
     images  = [dir+name for name in mapNames]
     scenes  = [pygame.transform.scale(pygame.image.load(dirScene+name), (WIDTH, HEIGHT)) for name in sceneNames]
     x, y, lx, ly, pos   = create_grid(WIDTH, HEIGHT, nCols, nRows, spacex, spacey, shiftx, shifty)

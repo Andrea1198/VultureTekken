@@ -1,12 +1,12 @@
 from numpy import loadtxt
 import pygame
-# Classe dei personaggi. ognuno di essi ha diverse caratteristiche.
-# corpo_a_corpo : danni da vicino
-# distanza : danni per cose lanciate (minori del corpo a corpo)
-# vita : vita totale
-# velocity : quanti pixel/frame (60 fps, v = 1 => 60 pixel al secondo)
-# salto : altezza max del salto
-# rigenerazione : punti vita rigenerati al secondo (ogni 60 frame)
+# Character's class. Everyone has different statistics.
+# melee : short range damage
+# range : throwing damage (usually less than melee)
+# health : max health
+# velocity : how many pixel/frame (60 fps, v = 1 => 60 pixel/s)
+# jump : max height of the jump
+# regeneration : Hp regenerated per second (ogni 60 frame)
 
 class char:
     def __init__(self, n, WIDTH, p):
@@ -19,8 +19,8 @@ class char:
         self.h_image    = 100
         self.image      = pygame.transform.scale(image, (w_image, self.h_image))
 
-        self.corpo_a_corpo, self.distanza, self.vitaMax, self.velocity, self.salto,  self.rigenerazione = loadtxt('./src/stat.txt', skiprows=n+2, max_rows=1, unpack=True)
-        self.vita       = self.vitaMax
+        self.melee, self.range, self.maxHealth, self.velocity, self.jump,  self.regeneration = loadtxt('./src/stat.txt', skiprows=n+2, max_rows=1, unpack=True)
+        self.health       = self.maxHealth
         self.superMax   = 100
         self.super      = 0
         if p==0:
@@ -32,9 +32,9 @@ class char:
 
     # damages
     def hit_melee(self, p2):
-        self.vita  -= p2.corpo_a_corpo
+        self.health  -= p2.melee
     def hit_dist(self, p2):
-        self.vita  -= p2.distanza
+        self.health  -= p2.range
 
     # movements
     def move(self, d):                          # d=0,1 : 0=sx, 1=dx
@@ -44,7 +44,7 @@ class char:
             self.x += self.velocity
     def jump(self):
         if self.y==0:
-            self.vy = self.salto
+            self.vy = self.jump
     def update(self, gravity):
         if self.y >= 0:
             self.vy-= gravity
