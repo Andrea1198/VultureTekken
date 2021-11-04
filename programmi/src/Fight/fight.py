@@ -8,9 +8,6 @@ def fist(p):
 def kick(p):
     print('kick')
 
-def jump(p):
-    print('jump')
-
 def showScenario(WIDTH, HEIGHT, image):
     screen  = pygame.display.set_mode((WIDTH, HEIGHT))
     screen.fill(BLACK)
@@ -50,14 +47,39 @@ def showHS(WIDTH, HEIGHT, screen, p1, p2):
     screen.blit(super1, (xbar2p1, ybar2p1))
     screen.blit(super2, (xbar2p2, ybar2p2))
 
-def fight(WIDTH, HEIGHT, p1, p2, scene):
+def controls(p, pe):
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+        if event.type == pygame.KEYDOWN:
+            key = event.key
+            if key == pygame.K_w and p.y == 0:
+                p.Jump()
+                print("jump")
+            elif key == pygame.K_a:
+                p.move = True
+                p.d    = 0
+                print("left")
+            elif key == pygame.K_d:
+                p.move = True
+                p.d     = 1
+            elif key == pygame.K_e:
+                fist(p)
+                if pe.x - p.x < 10:
+                    pe.hit_melee
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_a or event.key == pygame.K_d:
+                p.move = False
+
+
+def fight(WIDTH, HEIGHT, p1, p2, scene, gravity):
     base    = 30
     # health and super bar
     screen  = showScenario(WIDTH, HEIGHT, scene)
     showHS(WIDTH, HEIGHT, screen, p1, p2)
-    p1.show(screen, HEIGHT, base)
-    p2.show(screen, HEIGHT, base)
-
-
-
+    p1.Update(gravity)
+    p1.Show(screen, HEIGHT, base)
+    p2.Show(screen, HEIGHT, base)
+    # Controls (only for p1)
+    controls(p1, p2)
     pygame.display.update()

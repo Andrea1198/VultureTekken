@@ -42,5 +42,5 @@ def select_map(WIDTH, HEIGHT):
         pygame.display.update()
 
 def selectGravity(map):
-    gravity = np.array([1., 1., 0.6, 1.])
+    gravity = np.array([1., 1., 0.6, 1.])/100.
     return gravity[map]

@@ -23,6 +23,8 @@ class char:
         self.health       = self.maxHealth
         self.superMax   = 100
         self.super      = 0
+        self.move       = False
+        self.d          = -1
         if p==0:
             self.x      = 10
         else:
@@ -37,20 +39,22 @@ class char:
         self.health  -= p2.range
 
     # movements
-    def move(self, d):                          # d=0,1 : 0=sx, 1=dx
-        if d==0:
-            self.x -= self.velocity
-        else:
-            self.x += self.velocity
-    def jump(self):
+    def Move(self, d):                          # d=0,1 : 0=sx, 1=dx
+        if d==0 and self.move:
+            self.x -= self.velocity*2.
+        elif d==1 and self.move:
+            self.x += self.velocity*2.
+    def Jump(self):
         if self.y==0:
-            self.vy = self.jump
-    def update(self, gravity):
+            self.vy = self.jump/2.
+    def Update(self, gravity):
         if self.y >= 0:
             self.vy-= gravity
-            self.y -= self.vy
+            self.y += self.vy
             if self.y < 0:
                 self.y = 0.
-    def show(self, screen, HEIGHT, base):
+        if self.move:
+            self.Move(self.d)
+    def Show(self, screen, HEIGHT, base):
         import pygame
         screen.blit(self.image, (self.x, HEIGHT - self.h_image - self.y - base))

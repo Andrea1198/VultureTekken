@@ -31,12 +31,12 @@ p2          = char(n2, WIDTH, 1)
 # quindi p1 e p2 sono i due personaggi che si scontrano, ognuno con caratteristiche diverse
 map, scene  = select_map(WIDTH, HEIGHT)
 print("The selected map is ", map)
-# gravity = selectGravity(map)
+gravity = selectGravity(map)
 
 # Fight!
 while running:
-    dt  = float(clock.tick(FPS)) / 1000.
+    # dt  = float(clock.tick(FPS)) / 1000.
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    fight(WIDTH, HEIGHT, p1, p2, scene)
+    fight(WIDTH, HEIGHT, p1, p2, scene, gravity)
